@@ -26,9 +26,11 @@ def main():
             print("It's a damn pdf bro.")
         case ".xlsx":
             print("Excel document found.")
+            p = subprocess.run([f"python3.10 office_docx.py -f {file} -s {string_to_search}"],
+                               shell=True, capture_output=True, text=True)
         case ".docx":
             print("Word document found.")
-            p = subprocess.run([f"python3.10 docx.py -f {file} -s {string_to_search}"],
+            p = subprocess.run([f"python3.10 office_docx.py -f {file} -s {string_to_search}"],
                                shell=True, capture_output=True, text=True)
         case ".sql":
             print("SQL file found.")
