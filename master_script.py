@@ -34,6 +34,8 @@ def main():
                                shell=True, capture_output=True, text=True)
         case ".sql":
             print("SQL file found.")
+            p = subprocess.run([f"python3.10 sql_dump_checker.py -f {file} -s {string_to_search}"],
+                               shell=True, capture_output=True, text=True)
         case ".conf":
             print("Configuration file found.")
         case _:
