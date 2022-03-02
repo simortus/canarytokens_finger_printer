@@ -59,6 +59,7 @@ def main():
 
     type = get_type(file)
     print("-------- CASE  --------")
+
     if ".txt" in type:
         print("Text file found.")
 
@@ -74,7 +75,6 @@ def main():
 
     elif ".sql" in type:
         print("SQL file found.")
-    #     ask the administration to keep the windows open ( or at least make a button to control each window)
 
     elif ".conf" in type:
         print("Configuration file found.")
@@ -86,7 +86,7 @@ def main():
         if is_kubeconfig_file(file):
             print("Kubernetes config file detected")
             run_process(file, string_to_search, "kube.py")
-
-
+            
+            
 if __name__ == "__main__":
     main()

@@ -1,4 +1,15 @@
 # canarytokens_finger_printer
-![alt text](https://1.bp.blogspot.com/-C7apBekpBpU/YQ0cDZp_YaI/AAAAAAAAGxA/-LFn7yhH31QtuHa-RmPRvlNruS9IAIbZwCLcBGAsYHQ/s3303/Canarytokens-Logo-01.png)
-Python program that scrapes files to detect honey-tokens.
-For now, only canary-tokens are fingerprinted. Future work can include more types
+
+## Prerequisite
+Python 3.10 (released _04/10/2021_)
+## How to run
+Clone the repository and run the master_script.py
+
+    git clone https://github.com/simortus/canarytokens_finger_printer.git
+    cd canarytokens_finger_printer
+    python3.10 master_script.py
+    
+master_script.py takes two inputs:
+ - First you must provide the path to the file that you suspect is a honeytoken.
+ - Secondly you must provide the string you wish to search for (eg. '52.18.63.80' or 'canary') 
+
