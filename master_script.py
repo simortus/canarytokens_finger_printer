@@ -5,8 +5,8 @@ import subprocess
 def get_type(file):
     print("-------- GET TYPE  --------")
     file_name, file_extension = os.path.splitext(file)
-    print(f"Filename: {file_name}")
-    print(f"File extension: {file_extension}")
+    print("Filename: ", file_name)
+    print("File extension: ", file_extension)
     return file_extension
 
 
@@ -39,23 +39,16 @@ def is_wireguard_file(file):
         return True
 
 
-def run_process(file, string_to_search, script):
-    p = subprocess.run([f"python3 {script} -f {file} -s {string_to_search}"],
-                       shell=True, capture_output=True, text=True)
-    print(f"Return code: {p.returncode}")
-    print(f"Stdout:\n{p.stdout}")
-    if p.returncode == 0 and "detected" in p.stdout:
-        print(f"{os.path.join(os.getcwd(), file)} is a honeytoken.")
+def run_process(file, script):
+    p = subprocess.run(["python %s -f %s" % (script, file)], stdout=True, shell=True)
 
 
 def main():
     print("-------- START SCRIPT  --------")
     file = input("Enter filename or full path: ")
-    if os.path.exists(file):
-        string_to_search = input("Enter domain or string you want to look for in the file: ")
-    else:
+    if not os.path.exists(file):
         print("File not found. Check the path.")
-        exit(1)
+        return (1)
 
     type = get_type(file)
     print("-------- CASE  --------")
@@ -71,7 +64,7 @@ def main():
 
     elif ".docx" in type:
         print("Word document found.")
-        run_process(file, string_to_search, "docx.py")
+        run_process(file, "office_docx.py")
 
     elif ".sql" in type:
         print("SQL file found.")
@@ -82,10 +75,10 @@ def main():
     elif "_" in type or "" in type:
         print("No file extension.")
         if is_wireguard_file(file):
-            run_process(file, string_to_search, "wg.py")
+            run_process(file, "wg.py")
         if is_kubeconfig_file(file):
             print("Kubernetes config file detected")
-            run_process(file, string_to_search, "kube.py")
+            run_process(file, "kube.py")
             
             
 if __name__ == "__main__":
