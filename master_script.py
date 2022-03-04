@@ -5,8 +5,8 @@ import subprocess
 def get_type(file):
     print("-------- GET TYPE  --------")
     file_name, file_extension = os.path.splitext(file)
-    print(f"Filename: {file_name}")
-    print(f"File extension: {file_extension}")
+    print("Filename: ", file_name)
+    print("File extension: ", file_extension)
     return file_extension
 
 
