@@ -17,7 +17,7 @@ class Tokenfinder():
         m = CANARY_RE.match(string)
         if not m:
             return None
-        return m.group(1)
+        return True
 
     def find_tokens_in_string(string):
 
