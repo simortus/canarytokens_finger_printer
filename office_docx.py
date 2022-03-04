@@ -29,7 +29,11 @@ def check_office_files(file_location):
     if len(list_of_urls) == 0:
         return None
     else:
-        print(list_of_urls)
+        print(str(len(list_of_urls)) +" canary URLs detected in the file")
+        for url in list_of_urls:
+            print("Canary detected: ", url)
+            print()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
