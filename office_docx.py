@@ -30,7 +30,6 @@ def check_office_files(file_location):
         return None
     else:
         print(list_of_urls)
-        return list_of_urls
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
