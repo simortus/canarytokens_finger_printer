@@ -40,7 +40,7 @@ def is_wireguard_file(file):
 
 
 def run_process(file, script):
-    p = subprocess.run(["python %s -f %s" % (script, file)], stdout=True, shell=True)
+    subprocess.run(["python %s -f %s" % (script, file)], stdout=True, shell=True)
 
 
 def main():
@@ -74,17 +74,9 @@ def main():
 
     elif "_" in type or "" in type:
         print("No file extension.")
-        if is_wireguard_file(file):
-            run_process(file, "wg.py")
-        if is_kubeconfig_file(file):
-            print("Kubernetes config file detected")
-            run_process(file, string_to_search, "kube.py")
+        if is_wireguard_file(file) or is_kubeconfig_file(file):
+            run_process(file, "conf_files.py")
 
 
-
-
-            run_process(file, "kube.py")
-            
-            
 if __name__ == "__main__":
     main()
