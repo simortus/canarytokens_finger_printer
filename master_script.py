@@ -68,6 +68,7 @@ def main():
 
     elif ".sql" in type:
         print("SQL file found.")
+        run_process(file, "sql_dump_checker.py")
 
     elif ".conf" in type:
         print("Configuration file found.")

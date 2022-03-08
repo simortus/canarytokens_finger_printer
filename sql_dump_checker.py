@@ -18,7 +18,6 @@ def sql_dump_checker(file_location):
         token = Tokenfinder.find_tokens_in_string(line)
         if token:
             list_of_url.append(token)
-            found += 1
 
         # Regex for characers found in base64
         pattern = re.compile('[^a-zA-Z0-9+=]')
@@ -29,13 +28,13 @@ def sql_dump_checker(file_location):
             decoded = str(base64.b64decode(alnum))
             token = Tokenfinder.find_tokens_in_string(decoded)
             if token:
-                list_of_urls.append(token)
-                found += 1
+                list_of_urls.extend(token)
         except:
             continue
-
+    print(list_of_urls)
     # If no results of the search
     if len(list_of_urls) == 0:
+        print("No canaries detected")
         return None
     else:
         print(str(len(list_of_urls)) +" canary URLs detected in the file")
