@@ -3,15 +3,20 @@
 
 name: Python package
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: 
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'File to test'     
+        required: true
+        default: 'warning' 
+        type: choice
+        options:
+        - -f CanaryTokens/word.docx
+        - -f CanaryTokens/excel.xlsx
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -37,4 +42,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest -f CanaryTokens/word.docx
+        pytest $FILE
+      env:
+          FILE: ${{ github.event.inputs.file }}
