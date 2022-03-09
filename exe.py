@@ -1,5 +1,4 @@
 ﻿import os
-import re
 import string
 import argparse
 from tokenfinder import Tokenfinder
@@ -30,5 +29,7 @@ if __name__ == "__main__":
         result = Tokenfinder.find_tokens_in_string(s)
         if len(result) > 0:
             print("Honeytoken detected")
-            print(result)
+            for r in result:
+                print(r)
 
+# /home/aauser/Downloads/CEKLiPhotoLab_4vUsTkn.exe
