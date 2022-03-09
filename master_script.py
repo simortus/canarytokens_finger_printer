@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 import subprocess
 
@@ -61,13 +62,18 @@ def main():
 
     elif ".xlsx" in type:
         print("Excel file found.")
-
+        run_process(file, "office_docx.py")
     elif ".docx" in type:
         print("Word document found.")
         run_process(file, "office_docx.py")
 
+    elif ".exe" in type:
+        print("Executable file found.")
+        run_process(file, "exe.py")
+
     elif ".sql" in type:
         print("SQL file found.")
+        run_process(file, "sql_dump_checker.py")
 
     elif ".conf" in type:
         print("Configuration file found.")
@@ -80,3 +86,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
