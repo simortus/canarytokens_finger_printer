@@ -7,6 +7,7 @@ domains = ["www.canarytokens.org"]
 
 
 def reverse_dns():
+    # comment test
     return socket.gethostbyname(domains[0])
 
 
