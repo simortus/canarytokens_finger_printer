@@ -61,7 +61,7 @@ def main():
 
     elif ".xlsx" in type:
         print("Excel file found.")
-
+        run_process(file, "office_docx.py")
     elif ".docx" in type:
         print("Word document found.")
         run_process(file, "office_docx.py")
