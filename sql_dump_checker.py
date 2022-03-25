@@ -31,7 +31,6 @@ def sql_dump_checker(file_location):
                 list_of_urls.extend(token)
         except:
             continue
-    print(list_of_urls)
     # If no results of the search
     if len(list_of_urls) == 0:
         print("No canaries detected")
