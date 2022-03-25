@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
+from tokenfinder import Tokenfinder
 
 
 def get_type(file):
@@ -56,6 +57,7 @@ def main():
 
     if ".txt" in type:
         print("Text file found.")
+        run_process(file, "textfinder.py")
 
     elif ".pdf" in type:
         print("Pdf file found.")

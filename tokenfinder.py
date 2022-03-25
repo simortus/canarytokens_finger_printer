@@ -15,7 +15,7 @@ class Tokenfinder():
         CANARY_RE = re.compile('.*(['+''.join(canarytoken_ALPHABET)+']{'+
                           str(canarytoken_LENGTH)+'}).*', re.IGNORECASE)
         # Regex for splitting url
-        regex = r"([.]|/)"
+        regex = r"([.]|/|[@])"
         #Split url into array
         array = re.split(regex, string)
         #For every index of the array, check if the string is exactly 25 chars
@@ -43,4 +43,18 @@ class Tokenfinder():
             #Call to see if the entry(the url) is a canarytoken
             if Tokenfinder.__find_canarytoken(token):
                 list_of_urls.append(token)
+        
+        #Regex for finding emails
+        regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+        pattern = re.compile(regex, re.MULTILINE)
+        # Find all email addresses
+        tokenlist = re.findall(pattern, string)
+        # Check every entry in the list
+        for token in tokenlist:
+            #Call to see if the entry(the url) is a canarytoken
+            if Tokenfinder.__find_canarytoken(token):
+                list_of_urls.append(token)
+
+                
         return list_of_urls
+        
