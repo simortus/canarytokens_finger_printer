@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-from tokenfinder import Tokenfinder
 
 
 def get_type(file):
