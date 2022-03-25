@@ -59,6 +59,7 @@ def main():
 
     elif ".pdf" in type:
         print("Pdf file found.")
+        run_process(file, "pdf.py")
 
     elif ".xlsx" in type:
         print("Excel file found.")
