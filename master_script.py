@@ -56,9 +56,11 @@ def main():
 
     if ".txt" in type:
         print("Text file found.")
+        run_process(file, "textfinder.py")
 
     elif ".pdf" in type:
         print("Pdf file found.")
+        run_process(file, "pdf.py")
 
     elif ".xlsx" in type:
         print("Excel file found.")

@@ -1,12 +1,11 @@
 import argparse
 import string
-import base64
 import re
 from tokenfinder import Tokenfinder
 # The sql dump can either contain the domain canarytokens.com in plain text or encoded in base64
 # This function will check every line and look for 'canary'. 
 # It also tries to decode every line in case the line is base64 encoded
-def sql_dump_checker(file_location):
+def find_canary(file_location):
     file = open(file_location, 'r')
     lines = file.readlines()
 
@@ -19,18 +18,6 @@ def sql_dump_checker(file_location):
         if token:
             list_of_urls.append(token)
 
-        # Regex for characers found in base64
-        pattern = re.compile('[^a-zA-Z0-9+=]')
-        alnum = pattern.sub('',line)
-        
-        # Tries to decode the line, to see if the line is base64 encoded
-        try:
-            decoded = str(base64.b64decode(alnum))
-            token = Tokenfinder.find_tokens_in_string(decoded)
-            if token:
-                list_of_urls.extend(token)
-        except:
-            continue
     # If no results of the search
     if len(list_of_urls) == 0:
         print("No canaries detected")
@@ -49,4 +36,4 @@ if __name__ == "__main__":
     
     file_location = args.file
 
-    sql_dump_checker(file_location)
+    find_canary(file_location)
