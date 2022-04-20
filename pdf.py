@@ -17,7 +17,6 @@ def find_token_in_pdf(file_location):
         line = ""
         try:
             line = zlib.decompress(s).decode('UTF-8')
-            print(line)
         except:
             pass
         token = Tokenfinder.find_tokens_in_string(line)
