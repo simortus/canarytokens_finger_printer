@@ -41,7 +41,7 @@ def is_wireguard_file(file):
 
 
 def run_process(file, script):
-    subprocess.run(["python %s -f %s" % (script, file)], stdout=True, shell=True)
+    subprocess.call(["python3 %s -f %s" % (script, file)], stdout=True, shell=True)
 
 
 def main():
@@ -92,7 +92,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
