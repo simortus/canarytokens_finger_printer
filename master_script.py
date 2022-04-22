@@ -41,7 +41,7 @@ def is_wireguard_file(file):
 
 
 def run_process(file, script):
-    subprocess.run(["python %s -f %s" % (script, file)], stdout=True, shell=True)
+    subprocess.run(["python3 %s -f %s" % (script, file)], stdout=True, shell=True)
 
 
 def main():
@@ -76,6 +76,10 @@ def main():
     elif ".sql" in type:
         print("SQL file found.")
         run_process(file, "sql_dump_checker.py")
+
+    elif ".ini" in type:
+        print("Ini file found")
+        run_process(file, "windows_folder.py")
 
     elif ".conf" in type:
         print("Configuration file found.")
