@@ -88,6 +88,10 @@ def main():
     elif ".conf" in type:
         print("Configuration file found.")
 
+    elif ".png" in type:
+        print("Png file found")
+        run_process(file, "qrcode.py")
+
     elif "_" in type or "" in type:
         print("No file extension.")
         if is_wireguard_file(file) or is_kubeconfig_file(file):
