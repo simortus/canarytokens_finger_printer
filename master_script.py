@@ -41,7 +41,11 @@ def is_wireguard_file(file):
 
 
 def run_process(file, script):
-    subprocess.run(["python %s -f %s" % (script, file)], stdout=True, shell=True)
+    # Windows - does not support calling executables directly
+    if os.sys.platform == "win32":
+        subprocess.run(['cmd', '/c', ["python3 %s -f %s" % (script, file)]])
+    else:
+        subprocess.run(["python3 %s -f %s" % (script, file)], stdout=True, shell=True)
 
 
 def main():
@@ -77,8 +81,16 @@ def main():
         print("SQL file found.")
         run_process(file, "sql_dump_checker.py")
 
+    elif ".ini" in type:
+        print("Ini file found")
+        run_process(file, "windows_folder.py")
+
     elif ".conf" in type:
         print("Configuration file found.")
+
+    elif ".png" in type:
+        print("Png file found")
+        run_process(file, "qrcode.py")
 
     elif "_" in type or "" in type:
         print("No file extension.")
@@ -88,7 +100,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
