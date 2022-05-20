@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
+import validators
 
 
 def get_type(file):
-    print("-------- GET TYPE  --------")
+    print("-------- GET FILE EXTENSION  --------")
     file_name, file_extension = os.path.splitext(file)
     print("Filename: ", file_name)
     print("File extension: ", file_extension)
@@ -42,6 +43,7 @@ def is_wireguard_file(file):
 
 def run_process(file, script):
     # Windows - does not support calling executables directly
+    print("-------- LAUNCHING CHILD SCRIPT --------")
     if os.sys.platform == "win32":
         subprocess.run(['cmd', '/c', ["python3 %s -f %s" % (script, file)]])
     else:
@@ -49,14 +51,19 @@ def run_process(file, script):
 
 
 def main():
-    print("-------- START SCRIPT  --------")
+    print("-------- START MASTER SCRIPT  --------")
     file = input("Enter filename or full path: ")
-    if not os.path.exists(file):
-        print("File not found. Check the path.")
-        return (1)
+    # if the input is an url, launch cloned website
+    if validators.url(file):
+        run_process(file, "cloned_website.py")
+        return (0)
+    else:
+        if not os.path.exists(file):
+            print("File not found. Check the path.")
+            return (1)
 
     type = get_type(file)
-    print("-------- CASE  --------")
+    # print("-------- GET FILE EXTENSION  --------")
 
     if ".txt" in type:
         print("Text file found.")
