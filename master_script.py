@@ -45,7 +45,7 @@ def run_process(file, script):
     # Windows - does not support calling executables directly
     print("-------- LAUNCHING CHILD SCRIPT --------")
     if os.sys.platform == "win32":
-        subprocess.run(['cmd', '/c', ["python3 %s -f %s" % (script, file)]])
+        subprocess.run(['cmd', '/c', "python3 %s -f %s" % (script, file)])
     else:
         subprocess.run(["python3 %s -f %s" % (script, file)], stdout=True, shell=True)
 
