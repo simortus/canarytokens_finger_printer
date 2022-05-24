@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
+import platform
 import validators
 
 
@@ -52,15 +53,15 @@ def run_process(file, script):
 
 def main():
     print("-------- START MASTER SCRIPT  --------")
+    print("Current platform is: ", platform.system(), platform.release())
     file = input("Enter filename or full path: ")
-    # if the input is an url, launch cloned website
     if validators.url(file):
-        run_process(file, "cloned_website.py")
-        return (0)
+         run_process(file, "cloned_website.py")
+         return (0)
     else:
-        if not os.path.exists(file):
-            print("File not found. Check the path.")
-            return (1)
+         if not os.path.exists(file):
+             print("File not found. Check the path.")
+             return (1)
 
     type = get_type(file)
     # print("-------- GET FILE EXTENSION  --------")
